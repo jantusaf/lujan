@@ -30,7 +30,10 @@ document.querySelectorAll('.gallery img').forEach(img => {
   img.addEventListener('click', () => {
     const box = document.createElement('div');
     box.className = 'lightbox';
-    box.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
+    const big = document.createElement('img');
+    big.src = img.dataset.full || img.currentSrc || img.src;
+    big.alt = img.alt;
+    box.appendChild(big);
     box.addEventListener('click', () => box.remove());
     document.body.appendChild(box);
   });
